@@ -1,0 +1,48 @@
+---
+title: "COMPSCIX 415.2 Homework 1"
+author: "Timur Yarnall"
+date: "January 31, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+My Github repository for my assignments can be found at this URL: https://github.com/TYarny96/compscix-415-2-assignments
+
+
+```{r load_packages, warning=FALSE, message=FALSE}
+##install.packages("tidyverse")
+library(tidyverse)
+##install.packages("mdsr")
+library(mdsr)
+data("WorldCities")
+
+```
+WorldCities is a data frame with 23,018 observations on 10 variables.  Some of the variables are as follows: code - The ISO (?) city code, name -- Name of the city, latitude -- location in degrees, etc... and so forth.  for Question 1 
+
+```{r}
+
+glimpse(WorldCities)
+
+WorldCities <- head(WorldCities, 200) # 200 rows
+country_col <- WorldCities$country
+unique(country_col)
+
+region <- WorldCities$region
+unique(region)  # show only the region unique values, for Question 2  
+
+WorldCities %>% select(country) %>% unique()  ## Attempt for Question 3
+
+
+WorldCities %>% ggplot(aes(x = population)) + geom_histogram()  ## In Exercises
+
+
+WorldCities %>% ggplot(aes(x = population)) + 
+  geom_histogram() + 
+  xlab('City Population') + 
+  ylab('Country Region') + theme_bw(base_size = 22, base_family = "serif")  ## For Question 4
+
+ 
+```
+
